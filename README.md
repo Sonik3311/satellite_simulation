@@ -26,3 +26,7 @@ program will not only show the screen with orbit, but it will save image display
 ## Energy graph
 ![Main screen](https://github.com/Sonik3311/satellite_simulation/blob/main/Images/energy.png)
 ![Main screen](https://github.com/Sonik3311/satellite_simulation/blob/main/Images/energydrag.png)
+
+
+
+###### ...why did i do it in OGL anyways?...
