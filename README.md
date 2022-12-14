@@ -1,5 +1,5 @@
 # Satellite simulation
-
+![Main screen](https://github.com/Sonik3311/satellite_simulation/blob/main/Images/Logo.png)
 A little simulation with an OpenGL graphics
 
 To run it, you need to run ```setup.py``` first
