@@ -16,11 +16,11 @@ if SOLVER == "ODE":
 else:
     #Change if your solver is PHYS
     M = 1000000
-    R = 3 
-    r = 1 #трогайте
+    R = 3 #не трогать
+    r = 1 
     SCALE = 1 
-    VELOCITY = np.array([0,0.05,0.02], dtype=np.float32) #трогайте
-    POSITION = np.array([4,0,0]) #Позиция спутника, трогайте
+    VELOCITY = np.array([0,0.05,0.02], dtype=np.float32)
+    POSITION = np.array([4,0,0])
 
 
 
