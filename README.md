@@ -20,5 +20,6 @@ program will not only show the screen with orbit, but it will save image display
 # Example of what you should see
 ## Main screen
 ![Main screen](https://github.com/Sonik3311/satellite_simulation/blob/main/example.png)
+![Main screen](https://github.com/Sonik3311/satellite_simulation/blob/main/example2.png)
 ## Energy graph
 ![Main screen](https://github.com/Sonik3311/satellite_simulation/blob/main/energy.png)
