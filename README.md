@@ -9,6 +9,8 @@ To run it, you need to run ```setup.py``` first
 # How to use:
 ## controls:
 ```W A S D E Q``` to move and ```MOUSE``` to look around
+
+```ESC``` or close the window to exit
 ## settings:
 ### to edit simulation settings, you need to edit ```simulationsettings.py```
 
