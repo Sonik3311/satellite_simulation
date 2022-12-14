@@ -7,6 +7,9 @@ from camera import Camera
 from mesh import Mesh
 
 
+# !!! Если хотите увидеть часть где происходит симуляция, идите в simulator.py !!!
+# !!! Изменить параметры симуляции можно в simulationsettings.py !!!
+
 class Engine:
     def __init__(self, win_size=(1600,900)):
         #init pygame window
@@ -26,9 +29,10 @@ class Engine:
 
         self.clock = pg.time.Clock()
 
-        #init OGL
+        #init OGLs
         self.ctx = mgl.create_context()
         self.ctx.enable(flags=mgl.DEPTH_TEST | mgl.CULL_FACE)
+        #self.ctx.blend_func = (mgl.SRC_ALPHA, mgl.ONE_MINUS_SRC_ALPHA)
         self.ctx.line_width = 3
         
         #misc variables
@@ -51,8 +55,10 @@ class Engine:
     
     def render(self):
         self.ctx.clear(color=(0.08, 0.16, 0.18))
-        self.scene.render() 
+        self.scene.render()
+        #g.draw.circle(self.gui, (100,100,100), (500,500), 100) 
         pg.display.flip()
+        #self.gui.fill((0,0,0,0))
     
     def get_time(self):
         self.time = pg.time.get_ticks() * 0.001

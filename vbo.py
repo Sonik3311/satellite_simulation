@@ -1,12 +1,31 @@
 import numpy as np
 from icosphere import icosphere
+from simulator import SimulatorEngine
+import configparser as cp
+from simulationsettings import *
 
 class VBO:
     def __init__(self, ctx):
+        simargs = {
+            "Gfactor" : G_FACTOR,
+            "PlanetMass" : M,
+            "PlanetRadius": R,
+            "OrbitHeight" : r,
+            "scale" : SCALE,
+            "initPos" : POSITION,
+            "initSpeed" : VELOCITY
+        }
+        self.simulator = SimulatorEngine(simargs)
+
+        if SOLVER == "ODE":
+            sol = self.simulator.solveODE
+        elif SOLVER == "PHYS":
+            sol = self.simulator.simulatePHYS
+
         self.vbos = {}
         self.vbos["cube"] = CubeVBO(ctx, None)
         self.vbos["sphere"] = SphereVBO(ctx, (3))
-        self.vbos["trajectory"] = TrajectoryVBO(ctx, None)
+        self.vbos["trajectory"] = TrajectoryVBO(ctx, sol())
     
     def destroy(self):
         [vbo.destroy() for vbo in self.vbos.values()]
@@ -101,24 +120,17 @@ class TrajectoryVBO(BaseVBO):
     
     @staticmethod
     def get_data(vertices, indices):
-        #data = [vertices[ind] for line in indices for ind in line]
         return np.array(vertices, dtype='f4')
     
     def get_vertex_data(self,args): 
-        vertices = []
+        #vertices = []
         indices  = []
-        radius = 10
-        a = 0
-        da = 2 * np.pi/100
-        for i in range(0,100):
-            x = np.cos(a)
-            y = 0
-            z = np.sin(a)
-            a += da
-            vertices.append((x,y,z))
-        for i in range(99):
+        vertices, _ = args
+        for i in range(len(vertices)-1):
             indices.append((i,i+1))
         vertex_data = self.get_data(vertices,indices)
         return vertex_data
+
+
                 
     

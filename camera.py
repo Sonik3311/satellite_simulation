@@ -3,12 +3,12 @@ import pygame as pg
 
 FOV = 50
 NEAR = 0.1
-FAR = 100
+FAR = 10**50
 SPEED = 0.01
 SENSITIVITY = 0.05
 
 class Camera:
-    def __init__(self, app, position=(0,0,4), yaw=-90, pitch=0):
+    def __init__(self, app, position=(0,3,9), yaw=-90, pitch=0):
         self.app = app
         self.ar = app.WIN_SIZE[0] / app.WIN_SIZE[1]
 

@@ -23,7 +23,6 @@ class BaseModel:
     
     def render(self,mode):
         self.update()
-        #print(f'rendering with {self.color}')
         self.vao.render(mode)
 
 class Cube(BaseModel):
@@ -94,4 +93,6 @@ class Trajectory(BaseModel):
         self.program['m_view'].write(self.camera.m_view)
         self.program['m_model'].write(self.m_model)
         self.time += 0.000001
+
+
 
