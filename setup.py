@@ -1,7 +1,7 @@
 import sys
 import subprocess
 
-packages = ['pyglm', 'moderngl', 'numpy', 'icosphere', 'matplotlib']
+packages = ['pyglm', 'moderngl', 'numpy', 'icosphere', 'matplotlib', 'scipy']
 spackages = ['python']
 
 for package in packages:
