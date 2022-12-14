@@ -23,7 +23,7 @@ else:
     R = 3 #не трогать
     r = 1 
     SCALE = 1 
-    VELOCITY = np.array([0,0.05,0.02], dtype=np.float32)
+    VELOCITY = np.array([0,0.041,0.0], dtype=np.float32)
     POSITION = np.array([4,0,0])
     ATMOSPHERE = 1 # 0 <= x <= 1 высота атмосферы
     A_DENSITY = 0 #плотность атмосферы
