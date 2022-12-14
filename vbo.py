@@ -13,7 +13,10 @@ class VBO:
             "OrbitHeight" : r,
             "scale" : SCALE,
             "initPos" : POSITION,
-            "initSpeed" : VELOCITY
+            "initSpeed" : VELOCITY,
+            "Atmosphere" : ATMOSPHERE,
+            "Density" : A_DENSITY,
+            "LS" : LOOP_STOP,
         }
         self.simulator = SimulatorEngine(simargs)
 

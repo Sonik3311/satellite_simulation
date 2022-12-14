@@ -36,4 +36,4 @@ class Scene:
     #def render3D(self):
 
     def renderLine(self):
-        self.trajectory.render(mgl.LINE_LOOP)
+        self.trajectory.render(mgl.LINE_STRIP)

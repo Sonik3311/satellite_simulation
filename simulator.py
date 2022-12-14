@@ -26,9 +26,12 @@ class SimulatorEngine:
         self.M = args["PlanetMass"]
         self.Mr = args["PlanetRadius"]
         self.Or = args["OrbitHeight"] + args["PlanetRadius"]
-        self.scale = args["scale"] # #How much to scale down the system when plotting the points (i am plotting in below 10m, when orbits are thousands of km)
+        self.scale = args["scale"]
         self.startPos = args["initPos"]
         self.startSpeed = args["initSpeed"]
+        self.atmosphere = args["Atmosphere"]
+        self.density = args["Density"]
+        self.LS = args["LS"]
 
         self.satellite = Satellite(mass=100, pos=self.startPos, velocity=self.startSpeed)
         self.planet = Planet(mass=self.M, pos=np.array([0,0,0]), radius=self.Mr)
@@ -86,11 +89,17 @@ class SimulatorEngine:
         
         for i in range(50000):
             entered = np.linalg.norm(self.satellite.pos-self.startPos) < 0.5*self.scale
-            if ((entered == False and prev_state == False) or (entered == False and prev_state == True) or (entered == True and prev_state == True)): #check if we completed an orbital loop. Useless in big systems, so i might remove it
+            if ((entered == False and prev_state == False) or (entered == False and prev_state == True) or (entered == True and prev_state == True)) or not self.LS: #check if we completed an orbital loop. Useless in big systems, so i might remove it
                 dist = np.linalg.norm(self.satellite.pos - self.planet.pos)
                 
-                if dist <= self.Mr:
+                if dist <= self.Mr: #Collision Check
                     break
+                
+                if dist <= self.Mr+self.atmosphere: #atmosphere check
+                    speed = np.linalg.norm(self.satellite.velocity)
+                    dragforce = self.density * speed*speed
+                    drag = -self.satellite.velocity/speed * dragforce
+                    self.satellite.velocity = self.satellite.velocity + drag
                 
                 dir = (self.planet.pos - self.satellite.pos) / dist
                 forceMagnitude = ((self.satellite.mass * self.planet.mass) / dist**2) * self.G
@@ -108,6 +117,7 @@ class SimulatorEngine:
                 energy[2].append([Ek+Ep])
                 
             else:
+                points.append(self.startPos/self.scale)
                 break
             prev_state = entered
         #plt.plot(energy)
