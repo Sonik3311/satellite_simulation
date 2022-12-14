@@ -18,4 +18,7 @@ use PHYS settings to mess around
 program will not only show the screen with orbit, but it will save image displaying energies of a satellite in different time points in the main directory of the program as ```energy.png```
 
 # Example of what you should see
-![Main screen](https://github.com/Sonik3311/satellite_simulation/example.png)
+## Main screen
+![Main screen](https://github.com/Sonik3311/satellite_simulation/blob/main/example.png)
+## Energy graph
+![Main screen](https://github.com/Sonik3311/satellite_simulation/blob/main/energy.png)
