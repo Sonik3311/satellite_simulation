@@ -45,7 +45,7 @@ class Camera:
         self.m_view = self.get_view_matrix()
     
     def move(self):
-        #(in ryphm) Trust me, i am a programmer! There is a need for so much IF's!
+        #Trust me, i am a programmer! There is a need for so much IF's!
         velocity = SPEED * self.app.delta_time
         keys = pg.key.get_pressed()
         if keys[pg.K_w]:

@@ -5,23 +5,19 @@ import sys
 from scene import Scene
 from camera import Camera
 from mesh import Mesh
+from shader_program import ShaderProgram
 
-
-# !!! Если хотите увидеть часть где происходит симуляция, идите в simulator.py !!!
-# !!! Изменить параметры симуляции можно в simulationsettings.py !!!
 
 class Engine:
     def __init__(self, win_size=(1600,900)):
-        #init pygame window
        
         pg.init()
         self.WIN_SIZE = win_size
-        #prepare pygame to be render surface for OGL
+
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MAJOR_VERSION, 3)
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MINOR_VERSION, 3)
         pg.display.gl_set_attribute(pg.GL_CONTEXT_PROFILE_MASK,
                                     pg.GL_CONTEXT_PROFILE_CORE)
-        
         pg.display.set_mode(self.WIN_SIZE, flags = pg.OPENGL | pg.DOUBLEBUF)
 
         pg.event.set_grab(True)
@@ -29,16 +25,19 @@ class Engine:
 
         self.clock = pg.time.Clock()
 
-        #init OGLs
+        #init OGL
         self.ctx = mgl.create_context()
         self.ctx.enable(flags=mgl.DEPTH_TEST | mgl.CULL_FACE)
-        #self.ctx.blend_func = (mgl.SRC_ALPHA, mgl.ONE_MINUS_SRC_ALPHA)
         self.ctx.line_width = 3
         
         #misc variables
         self.time = 0
         self.delta_time = 0
-
+        
+        #shaders
+        self.shaders = ShaderProgram(self.ctx)
+        self.shaders.load_program('default')
+        self.shaders.load_program('trajectory')
         #camera
         self.camera = Camera(self)
         #mesh
@@ -56,9 +55,7 @@ class Engine:
     def render(self):
         self.ctx.clear(color=(0.08, 0.16, 0.18))
         self.scene.render()
-        #g.draw.circle(self.gui, (100,100,100), (500,500), 100) 
         pg.display.flip()
-        #self.gui.fill((0,0,0,0))
     
     def get_time(self):
         self.time = pg.time.get_ticks() * 0.001

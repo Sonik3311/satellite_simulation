@@ -81,7 +81,7 @@ class SimulatorEngine:
     def simulatePHYS(self):
         points = []
         velocity = []
-        energy = [[],[],[]]
+        energy = [[],[],[],[],[]]
 
         points.append(self.satellite.pos/self.scale)
         entered = True
@@ -110,8 +110,8 @@ class SimulatorEngine:
                 points.append(self.satellite.pos/self.scale)
 
                 #energy
-                Ek = (self.G*self.satellite.mass*self.planet.mass)/2*dist
-                Ep = 0.5*-self.G * self.planet.mass*self.satellite.mass * 1 * dist
+                Ek = 0.5*self.satellite.mass * np.linalg.norm(self.satellite.velocity)**2
+                Ep = self.satellite.mass * -forceMagnitude * dist
                 energy[0].append([Ek])
                 energy[1].append([Ep])
                 energy[2].append([Ek+Ep])

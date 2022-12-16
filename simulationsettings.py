@@ -19,14 +19,14 @@ if SOLVER == "ODE":
     LOOP_STOP = False # не используется солвером ODE
 else:
     #Change if your solver is PHYS
-    M = 1000000
+    M = 10000
     R = 3 #не трогать
     r = 1 
-    SCALE = 1 
-    VELOCITY = np.array([0,0.041,0.0], dtype=np.float32)
+    SCALE = 1
+    VELOCITY = np.array([0.00,0.0045,0.00], dtype=np.float32)
     POSITION = np.array([4,0,0])
-    ATMOSPHERE = 1 # 0 <= x <= 1 высота атмосферы
-    A_DENSITY = 0 #плотность атмосферы
+    ATMOSPHERE = 1 #высота атмосферы
+    A_DENSITY = 0.0 #плотность самого нижнего уровня атмосферы
     LOOP_STOP = True #Должны ли мы считать только 1 круг или продолжать делать круги после 1-го
     #LOOP_STOP желательно выключить если есть атмосфера
 

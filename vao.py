@@ -1,17 +1,11 @@
 from vbo import VBO
-from shader_program import ShaderProgram
 
 class VAO:
-    def __init__(self, ctx):
-        self.ctx = ctx
-        self.vbo = VBO(ctx)
-        self.program = ShaderProgram(ctx)
+    def __init__(self, app):
+        self.ctx = app.ctx
+        self.vbo = VBO(app.ctx)
+        self.program = app.shaders
         self.vaos = {}
-
-        self.vaos["cube"] = self.get_vao(
-            program = self.program.programs["default"],
-            vbo = self.vbo.vbos['cube']
-        )
 
         self.vaos["sphere"] = self.get_vao(
             program = self.program.programs["default"],
