@@ -48,7 +48,6 @@ class Sphere(BaseModel):
     def __init__(self, app, vao_name='sphere', pos=(0,0,0), color=(1,0,1)):
         super().__init__(app,vao_name,pos)
         self.color = color
-        #print(self.color)
         self.on_init()
 
     def on_init(self):
